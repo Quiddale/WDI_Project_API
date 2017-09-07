@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  world: one
+  top: 1
+  left: 1
+
+two:
+  world: two
+  top: 1
+  left: 1

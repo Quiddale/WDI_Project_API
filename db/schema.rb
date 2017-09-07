@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904140029) do
+ActiveRecord::Schema.define(version: 20170905144434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pokemons", force: :cascade do |t|
+    t.string "name"
+    t.text "image"
+    t.string "poketype"
+    t.integer "pokedex_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "spot_id", default: 0
+  end
+
+  create_table "pokemons_users", id: false, force: :cascade do |t|
+    t.bigint "pokemon_id", null: false
+    t.bigint "user_id", null: false
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.bigint "world_id"
+    t.integer "top"
+    t.integer "left"
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["world_id"], name: "index_spots_on_world_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -32,4 +58,5 @@ ActiveRecord::Schema.define(version: 20170904140029) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "spots", "worlds"
 end
